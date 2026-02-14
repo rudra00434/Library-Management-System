@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author List</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1e1e2f;
+            color: white;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 60%;
+            margin: auto;
+            border-collapse: collapse;
+            background: #2c2c44;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #4a00e0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #3a3a55;
+        }
+
+        tr:hover {
+            background: #50507a;
+        }
+
+        a {
+            color: #ffd369;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Author List</h1>
+
+<div class="back">
+    <a href="{% url 'book_list_fbv' %}">Back to Books</a>
+</div>
+
+<table>
+    <tr>
+        <th>Author ID</th>
+        <th>Author Name</th>
+    </tr>
+
+    {% for author in authors %}
+    <tr>
+        <td>{{ author.id }}</td>
+        <td>
+            <a href="{% url 'book_by_author' author.id %}">
+                {{ author.first_name }} {{ author.last_name }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

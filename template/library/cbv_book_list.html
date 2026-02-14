@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 0 20px 0;
+            letter-spacing: 3px;
+            font-size: 38px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(14px);
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 14px;
+        }
+
+        th {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            padding: 16px;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        tr {
+            transition: all 0.3s ease;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.015);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        a {
+            color: #ffd369;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+        }
+
+        a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: #ffd369;
+            transition: 0.3s;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            table, th, td {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📚 Booktech Library</h1>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+        </tr>
+
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>
+                <a href="{% url 'book_detail_cbv' book.id %}">
+                    {{ book.title }}
+                </a>
+            </td>
+            <td>{{ book.author.first_name }} {{ book.author.last_name }}</td>
+            <td>{{ book.isbn }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

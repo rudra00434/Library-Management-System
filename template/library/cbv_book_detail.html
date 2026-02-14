@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Detail</title>
+</head>
+<body>
+    <h1>Book Name : {{ book.title }}</h1>
+    <h2> Author : {{ book.author.first_name }} {{ book.author.last_name }}</h2>
+    <h3> ISBN : {{ book.isbn }}</h3>
+     <h3> Publication Date : {{ book.publication_date }}</h3>
+    <h3> Publisher :{% for publisher in book.publisher.all %}
+                       {{ publisher.name }}
+                         {% endfor %}
+    </h3>
+    {% if book.title == "Django" %}
+    <img src="{% static 'image/book_cover.png' %}" width="300" height="400" alt="{{ book.title }} By owner" />
+
+  {% elif book.title == "C programming" %}
+    <img src="{% static 'image/c_programming_cover.png' %}" width="300" height="400" alt="{{ book.title }} By owner" />
+
+  {% else %}
+    <p>No cover available</p>
+  {% endif %}
+
+
+</body>
+</html>

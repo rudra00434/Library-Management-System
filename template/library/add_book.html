@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(14px);
+            padding: 40px;
+            border-radius: 18px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeIn 0.7s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        form p {
+            margin-bottom: 18px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            margin-top: 6px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+
+        .author-btn {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+            color: white;
+            font-weight: bold;
+            transition: 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .author-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+   <h1>Add a New Book</h1>
+
+   <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Book</button>
+   </form>
+</div>
+
+</body>
+</html>
